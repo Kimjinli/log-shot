@@ -1,0 +1,30 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.confirmDialog {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 8px 0;
+}
+
+.message {
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-primary, #ffffff);
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+
+  @include mobile {
+    flex-direction: column-reverse;
+  }
+}

@@ -19,7 +19,8 @@
       "Bash(/c/mywork/log-shot/app/api/download/route.ts:*)",
       "Bash(/c/mywork/log-shot/src/components/layout/FileUploader.module.scss:*)",
       "Bash(npx drizzle-kit push:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(C:/mywork/log-shot/RESET_FEATURE.md:*)"
     ]
   }
 }

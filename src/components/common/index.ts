@@ -19,3 +19,6 @@ export type { ToastProps } from './Toast/Toast';
 
 export { Loading } from './Loading/Loading';
 export type { LoadingProps } from './Loading/Loading';
+
+export { ConfirmDialog } from './ConfirmDialog';
+export type { ConfirmDialogProps } from './ConfirmDialog';

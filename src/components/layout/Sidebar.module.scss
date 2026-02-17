@@ -23,6 +23,10 @@
   color: $color-primary;
 }
 
+.menuContainer {
+  position: relative;
+}
+
 .menuButton {
   @include flex-center;
   width: 32px;
@@ -39,6 +43,64 @@
     background-color: rgba(255, 255, 255, 0.05);
     color: $color-text-primary;
   }
+
+  &[aria-expanded='true'] {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: $color-text-primary;
+  }
+}
+
+.menuDropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  overflow: hidden;
+  animation: slideDown 0.2s ease-out;
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  width: 100%;
+  padding: $spacing-md $spacing-lg;
+  background: transparent;
+  border: none;
+  color: $color-text-primary;
+  font-size: $font-size-sm;
+  text-align: left;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: rgb(239, 68, 68);
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $color-border;
+  }
+}
+
+.menuIcon {
+  font-size: $font-size-lg;
 }
 
 .nav {
