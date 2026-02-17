@@ -1,0 +1,83 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.tabBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: $mobile-tab-height;
+  background-color: $color-surface;
+  border-top: 1px solid $color-border;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.tab {
+  @include flex-center;
+  flex-direction: column;
+  gap: $spacing-xs;
+  flex: 1;
+  height: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all $transition-base;
+  color: $color-text-secondary;
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.active {
+    color: $color-primary;
+
+    .icon {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.icon {
+  font-size: 24px;
+  transition: transform $transition-base;
+}
+
+.label {
+  font-size: $font-size-xs;
+  font-weight: var(--font-weight-medium);
+}
+
+.fab {
+  position: absolute;
+  bottom: calc($mobile-tab-height + $spacing-lg);
+  right: $spacing-lg;
+  width: 60px;
+  height: 60px;
+  @include flex-center;
+  background: linear-gradient(135deg, $color-primary 0%, #2563eb 100%);
+  border: none;
+  border-radius: $radius-full;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  transition: all $transition-base;
+  z-index: 101;
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  &:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-2px);
+  }
+}
+
+.fabIcon {
+  font-size: 32px;
+  color: white;
+  font-weight: var(--font-weight-bold);
+}

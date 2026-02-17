@@ -1,0 +1,46 @@
+{
+  "name": "Log-Shot",
+  "short_name": "Log-Shot",
+  "description": "사진 아카이빙 PWA 솔루션",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-1.png",
+      "sizes": "540x720",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["photo", "productivity"],
+  "shortcuts": [
+    {
+      "name": "카메라",
+      "short_name": "Camera",
+      "description": "사진 촬영",
+      "url": "/?tab=capture",
+      "icons": [
+        {
+          "src": "/icon-camera.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

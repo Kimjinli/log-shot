@@ -1,0 +1,124 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.toast {
+  position: fixed;
+  bottom: $spacing-2xl;
+  right: $spacing-2xl;
+  z-index: var(--z-toast);
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  box-shadow: var(--shadow-lg);
+  min-width: 300px;
+  max-width: 500px;
+  animation: slideInRight var(--transition-base);
+
+  &.hiding {
+    animation: slideOutRight var(--transition-base);
+  }
+
+  @include mobile {
+    left: $spacing-lg;
+    right: $spacing-lg;
+    bottom: calc($mobile-tab-height + $spacing-lg);
+    min-width: auto;
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  @include flex-center;
+  border-radius: 50%;
+  font-size: $font-size-base;
+  flex-shrink: 0;
+}
+
+.message {
+  flex: 1;
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+}
+
+.closeButton {
+  width: 24px;
+  height: 24px;
+  @include flex-center;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: $color-text-secondary;
+  cursor: pointer;
+  border-radius: $radius-sm;
+  transition: all $transition-base;
+  flex-shrink: 0;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: $color-text-primary;
+  }
+}
+
+// Toast 타입별 스타일
+.success {
+  border-color: $color-success;
+
+  .icon {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: $color-success;
+  }
+}
+
+.error {
+  border-color: $color-error;
+
+  .icon {
+    background-color: rgba(255, 77, 77, 0.2);
+    color: $color-error;
+  }
+}
+
+.warning {
+  border-color: $color-warning;
+
+  .icon {
+    background-color: rgba(245, 158, 11, 0.2);
+    color: $color-warning;
+  }
+}
+
+.info {
+  border-color: $color-primary;
+
+  .icon {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: $color-primary;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}

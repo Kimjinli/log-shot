@@ -1,0 +1,305 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.sidebar {
+  width: $sidebar-width;
+  height: 100vh;
+  background-color: $color-surface;
+  border-right: 1px solid $color-border;
+  @include flex-column;
+  overflow-y: auto;
+}
+
+.header {
+  @include flex-between;
+  padding: $spacing-xl;
+  border-bottom: 1px solid $color-border;
+}
+
+.logo {
+  margin: 0;
+  font-size: $font-size-xl;
+  font-weight: var(--font-weight-bold);
+  color: $color-primary;
+}
+
+.menuButton {
+  @include flex-center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  color: $color-text-secondary;
+  font-size: $font-size-xl;
+  cursor: pointer;
+  border-radius: $radius-sm;
+  transition: all $transition-base;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: $color-text-primary;
+  }
+}
+
+.nav {
+  @include flex-column;
+  gap: $spacing-2xl;
+  padding: $spacing-xl;
+  flex: 1;
+}
+
+.section {
+  @include flex-column;
+  gap: $spacing-md;
+}
+
+.sectionHeader {
+  @include flex-between;
+  align-items: center;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: $font-size-xs;
+  font-weight: var(--font-weight-semibold);
+  color: $color-text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.addButton {
+  width: 24px;
+  height: 24px;
+  @include flex-center;
+  background: transparent;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  color: $color-primary;
+  font-size: $font-size-lg;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-color: $color-primary;
+  }
+}
+
+.addProjectForm {
+  @include flex-column;
+  gap: $spacing-sm;
+  padding: $spacing-sm;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+}
+
+.projectInput {
+  width: 100%;
+  padding: $spacing-sm;
+  background-color: $color-background;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  color: $color-text-primary;
+  font-size: $font-size-sm;
+  outline: none;
+  transition: all $transition-base;
+
+  &:focus {
+    border-color: $color-primary;
+  }
+
+  &::placeholder {
+    color: $color-text-secondary;
+  }
+}
+
+.formActions {
+  @include flex-between;
+  gap: $spacing-sm;
+}
+
+.confirmButton,
+.cancelButton {
+  flex: 1;
+  padding: $spacing-xs $spacing-sm;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: $font-size-xs;
+  cursor: pointer;
+  transition: all $transition-base;
+}
+
+.confirmButton {
+  background-color: $color-primary;
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: $color-primary-hover;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.cancelButton {
+  background-color: transparent;
+  border: 1px solid $color-border;
+  color: $color-text-secondary;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: $color-text-primary;
+  }
+}
+
+.projectList,
+.fileList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  @include flex-column;
+  gap: $spacing-sm;
+}
+
+.projectItem,
+.fileItem {
+  @include flex-between;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  &.active {
+    background-color: rgba(59, 130, 246, 0.2);
+    border-left: 3px solid $color-primary;
+  }
+}
+
+.hashtag {
+  font-size: $font-size-sm;
+  color: $color-primary;
+}
+
+.dotIndicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: $color-text-secondary;
+
+  &[data-status='saved'] {
+    background-color: $color-success;
+  }
+
+  &[data-status='synced'] {
+    background-color: $color-primary;
+  }
+
+  &[data-status='modified'] {
+    background-color: $color-warning;
+  }
+}
+
+.loading {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  text-align: center;
+}
+
+.count {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: $radius-sm;
+}
+
+.infoText {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+  line-height: 1.6;
+
+  p {
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.tagList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  @include flex-column;
+  gap: $spacing-sm;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.tagItem {
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  &.active {
+    background-color: rgba(59, 130, 246, 0.2);
+    border-left: 3px solid $color-primary;
+  }
+}
+
+.tagName {
+  font-size: $font-size-sm;
+  color: $color-primary;
+}
+
+.emptyMessage {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  text-align: center;
+  padding: $spacing-md;
+}
+
+.errorMessage {
+  @include flex-column;
+  gap: $spacing-xs;
+  padding: $spacing-md;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: $radius-sm;
+
+  p {
+    margin: 0;
+    font-size: $font-size-sm;
+    color: rgb(239, 68, 68);
+
+    &:first-child {
+      font-weight: var(--font-weight-semibold);
+    }
+  }
+
+  .errorHint {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+    margin-top: $spacing-xs;
+  }
+
+  code {
+    display: block;
+    margin-top: $spacing-xs;
+    padding: $spacing-xs $spacing-sm;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: $radius-sm;
+    font-family: 'Courier New', monospace;
+    font-size: $font-size-xs;
+    color: $color-primary;
+  }
+}

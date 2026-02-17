@@ -1,0 +1,101 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.button {
+  @include button-base;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  font-family: inherit;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Variants
+.primary {
+  background-color: $color-primary;
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: $color-primary-hover;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+}
+
+.outline {
+  background-color: transparent;
+  border: 1px solid $color-border;
+  color: $color-text-primary;
+
+  &:hover:not(:disabled) {
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+}
+
+.ghost {
+  background-color: transparent;
+  color: $color-text-secondary;
+
+  &:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: $color-text-primary;
+  }
+}
+
+.danger {
+  background-color: $color-error;
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: darken(#ff4d4d, 10%);
+  }
+}
+
+// Sizes
+.sm {
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-sm;
+}
+
+.md {
+  padding: $spacing-md $spacing-xl;
+  font-size: $font-size-base;
+}
+
+.lg {
+  padding: $spacing-lg $spacing-2xl;
+  font-size: $font-size-lg;
+}
+
+// Modifiers
+.fullWidth {
+  width: 100%;
+}
+
+.loading {
+  pointer-events: none;
+}
+
+.hiddenText {
+  opacity: 0;
+}
+
+// Spinner
+.spinner {
+  @include spinner(16px, 2px);
+  position: absolute;
+}

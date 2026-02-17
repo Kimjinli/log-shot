@@ -1,0 +1,41 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.container {
+  @include flex-center;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-2xl;
+}
+
+.fullScreen {
+  @include flex-center;
+  @include overlay(0.9);
+  position: fixed;
+  z-index: var(--z-modal);
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.spinner {
+  @include spinner(40px, 4px);
+
+  &.sm {
+    @include spinner(24px, 2px);
+  }
+
+  &.md {
+    @include spinner(40px, 4px);
+  }
+
+  &.lg {
+    @include spinner(60px, 6px);
+  }
+}
+
+.text {
+  margin: 0;
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+  text-align: center;
+}

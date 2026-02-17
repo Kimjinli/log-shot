@@ -1,0 +1,47 @@
+// Log-Shot Design System Variables
+// SCSS 변수만 정의 (CSS Variables는 globals.scss에서 정의)
+
+// SCSS 변수들은 CSS Variable을 참조
+$color-background: var(--color-background);
+$color-surface: var(--color-surface);
+$color-primary: var(--color-primary);
+$color-primary-hover: var(--color-primary-hover);
+$color-text-primary: var(--color-text-primary);
+$color-text-secondary: var(--color-text-secondary);
+$color-border: var(--color-border);
+$color-error: var(--color-error);
+$color-success: var(--color-success);
+$color-warning: var(--color-warning);
+
+// Spacing
+$spacing-xs: var(--spacing-xs);
+$spacing-sm: var(--spacing-sm);
+$spacing-md: var(--spacing-md);
+$spacing-lg: var(--spacing-lg);
+$spacing-xl: var(--spacing-xl);
+$spacing-2xl: var(--spacing-2xl);
+$spacing-3xl: var(--spacing-3xl);
+
+// Border Radius
+$radius-sm: var(--radius-sm);
+$radius-md: var(--radius-md);
+$radius-lg: var(--radius-lg);
+$radius-full: var(--radius-full);
+
+// Layout
+$sidebar-width: var(--sidebar-width);
+$detail-panel-width: var(--detail-panel-width);
+$mobile-tab-height: var(--mobile-tab-height);
+
+// Typography
+$font-size-xs: var(--font-size-xs);
+$font-size-sm: var(--font-size-sm);
+$font-size-base: var(--font-size-base);
+$font-size-lg: var(--font-size-lg);
+$font-size-xl: var(--font-size-xl);
+$font-size-2xl: var(--font-size-2xl);
+
+// Transitions
+$transition-fast: var(--transition-fast);
+$transition-base: var(--transition-base);
+$transition-slow: var(--transition-slow);

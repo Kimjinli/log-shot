@@ -1,0 +1,46 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+// Desktop Layout
+.desktopLayout {
+  display: flex;
+  height: 100vh;
+  background-color: $color-background;
+  overflow: hidden;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.main {
+  flex: 1;
+  overflow-y: auto;
+  padding: $spacing-xl;
+}
+
+// Mobile Layout
+.mobileLayout {
+  display: none;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $color-background;
+
+  @include mobile {
+    display: flex;
+  }
+}
+
+.mobileMain {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: $mobile-tab-height;
+}
+
+.capturePage,
+.savedPage,
+.profilePage {
+  @include flex-center;
+  height: 100%;
+  color: $color-text-secondary;
+}

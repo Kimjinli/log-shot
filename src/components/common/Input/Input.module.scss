@@ -1,0 +1,46 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.label {
+  font-size: $font-size-sm;
+  font-weight: var(--font-weight-medium);
+  color: $color-text-primary;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.required {
+  color: $color-error;
+  font-size: $font-size-sm;
+}
+
+.input {
+  @include input-base;
+
+  &.error {
+    border-color: $color-error;
+  }
+}
+
+.errorText {
+  font-size: $font-size-xs;
+  color: $color-error;
+  margin: 0;
+}
+
+.helperText {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+  margin: 0;
+}
