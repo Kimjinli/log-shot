@@ -7,60 +7,74 @@ Log-Shot은 사진의 원본을 안전하게 보호하면서도 편리한 편집
 ## 주요 기능
 
 ### 원본 보호 카메라
+
 - 촬영한 원본 이미지는 사용자 기기에 안전하게 저장
 - 서버에는 최적화된 압축본만 업로드하여 원본 무결성 보장
 
 ### EXIF 데이터 보존
+
 - 촬영 날짜, 시간, 위치 등 EXIF 정보를 DB에 별도 저장
 - 이미지 압축 시에도 메타데이터 손실 방지
 
 ### 화이트밸런스 보정
+
 - Canvas API를 활용한 픽셀 단위 색온도 조정
 - 원본 파일은 수정하지 않는 비파괴 편집 방식
 
 ### 오프라인 지원
+
 - IndexedDB를 활용한 임시 저장
 - 네트워크 연결 시 자동 업로드 재시도
 
 ### 타임라인 인터페이스
+
 - 날짜별 사진 탐색 및 필터링
 - 직관적인 그리드 뷰와 상세 보기
 
 ### 프로젝트 그룹
+
 - 해시태그 기반 사진 분류 (`#JejuTrip`, `#WorkProject` 등)
 - 프로젝트별 사진 관리 및 동기화
 
 ### PC 다운로드
+
 - 모바일에서 수행한 편집 작업이 반영된 최종 이미지를 PC에서 다운로드
 
 ## 기술 스택
 
 ### Frontend
+
 - **Next.js 14+** (App Router)
 - **TypeScript**
 - **SCSS Modules** (모듈화된 스타일링)
 
 ### State Management
+
 - **TanStack Query v5** (서버 상태 관리 및 캐싱)
 - **Zustand** (클라이언트 상태 관리)
 
 ### Form & Validation
+
 - **React Hook Form** (폼 상태 관리)
 - **Zod** (스키마 기반 유효성 검사)
 
 ### Database
+
 - **Drizzle ORM**
 - **PostgreSQL** (Vercel 배포용)
 - **SQLite** (로컬 개발 및 Electron용)
 
 ### PWA
+
 - **Service Worker** (오프라인 지원)
 - **IndexedDB** (idb 라이브러리)
 
 ### Desktop
+
 - **Electron** (데스크톱 앱 배포)
 
 ### Image Processing
+
 - **browser-image-compression** (클라이언트 이미지 압축)
 - **exif-js** (EXIF 데이터 추출)
 - **Canvas API** (이미지 보정)
@@ -135,6 +149,7 @@ npm run start:web
 ```
 
 배포 방법:
+
 - **VPS (AWS EC2, DigitalOcean 등)**: PM2 사용
 - **Docker**: 컨테이너로 배포
 - **Railway/Fly.io**: 간편한 배포 플랫폼
@@ -221,6 +236,7 @@ log-shot/
 ### 스타일 커스터마이징
 
 `styles/_variables.scss`에서 다음을 수정할 수 있습니다:
+
 - 색상 테마 (다크 모드 포함)
 - 간격 및 여백
 - 폰트 및 타이포그래피
@@ -245,6 +261,7 @@ npm run db:reset:local
 ### 상수 수정
 
 `src/constants/index.ts`에서 다음을 수정할 수 있습니다:
+
 - 페이지네이션 설정
 - 파일 크기 제한
 - 재시도 횟수
@@ -254,65 +271,66 @@ npm run db:reset:local
 
 ### 기본 명령어
 
-| 명령어 | 설명 |
-|--------|------|
-| `npm run dev` | 개발 서버 실행 (환경 자동 감지) |
-| `npm run build` | 프로덕션 빌드 |
-| `npm run start` | 프로덕션 서버 실행 |
-| `npm run lint` | ESLint 실행 |
+| 명령어          | 설명                            |
+| --------------- | ------------------------------- |
+| `npm run dev`   | 개발 서버 실행 (환경 자동 감지) |
+| `npm run build` | 프로덕션 빌드                   |
+| `npm run start` | 프로덕션 서버 실행              |
+| `npm run lint`  | ESLint 실행                     |
 
 ### 배포 명령어
 
-| 명령어 | 설명 |
-|--------|------|
-| `npm run build:web` | 웹 앱 프로덕션 빌드 |
-| `npm run start:web` | 웹 앱 서버 시작 |
-| `npm run deploy:vercel` | Vercel 배포 |
-| `npm run deploy:electron` | Electron 앱 빌드 |
+| 명령어                    | 설명                |
+| ------------------------- | ------------------- |
+| `npm run build:web`       | 웹 앱 프로덕션 빌드 |
+| `npm run start:web`       | 웹 앱 서버 시작     |
+| `npm run deploy:vercel`   | Vercel 배포         |
+| `npm run deploy:electron` | Electron 앱 빌드    |
 
 ### Electron 명령어
 
-| 명령어 | 설명 |
-|--------|------|
-| `npm run electron` | Electron 앱 실행 |
-| `npm run electron:dev` | 개발 모드 (Next.js + Electron) |
-| `npm run electron:build` | 전체 플랫폼 빌드 |
-| `npm run electron:build:win` | Windows 빌드 |
-| `npm run electron:build:mac` | macOS 빌드 |
-| `npm run electron:build:linux` | Linux 빌드 |
+| 명령어                         | 설명                           |
+| ------------------------------ | ------------------------------ |
+| `npm run electron`             | Electron 앱 실행               |
+| `npm run electron:dev`         | 개발 모드 (Next.js + Electron) |
+| `npm run electron:build`       | 전체 플랫폼 빌드               |
+| `npm run electron:build:win`   | Windows 빌드                   |
+| `npm run electron:build:mac`   | macOS 빌드                     |
+| `npm run electron:build:linux` | Linux 빌드                     |
 
 ### 데이터베이스 명령어
 
-| 명령어 | 설명 |
-|--------|------|
+| 명령어                | 설명                               |
+| --------------------- | ---------------------------------- |
 | `npm run db:generate` | 마이그레이션 생성 (환경 자동 감지) |
-| `npm run db:migrate` | 마이그레이션 실행 (환경 자동 감지) |
-| `npm run db:seed` | 샘플 데이터 시드 |
-| `npm run db:studio` | Drizzle Studio 실행 |
-| `npm run db:reset` | 데이터베이스 초기화 |
+| `npm run db:migrate`  | 마이그레이션 실행 (환경 자동 감지) |
+| `npm run db:seed`     | 샘플 데이터 시드                   |
+| `npm run db:studio`   | Drizzle Studio 실행                |
+| `npm run db:reset`    | 데이터베이스 초기화                |
 
 ### 로컬 환경 명령어 (SQLite)
 
-| 명령어 | 설명 |
-|--------|------|
-| `npm run dev:local` | 로컬 개발 서버 실행 |
-| `npm run db:generate:local` | SQLite 마이그레이션 생성 |
-| `npm run db:migrate:local` | SQLite 마이그레이션 실행 |
-| `npm run db:studio:local` | SQLite Drizzle Studio 실행 |
-| `npm run db:reset:local` | SQLite 데이터베이스 초기화 |
+| 명령어                      | 설명                       |
+| --------------------------- | -------------------------- |
+| `npm run dev:local`         | 로컬 개발 서버 실행        |
+| `npm run db:generate:local` | SQLite 마이그레이션 생성   |
+| `npm run db:migrate:local`  | SQLite 마이그레이션 실행   |
+| `npm run db:studio:local`   | SQLite Drizzle Studio 실행 |
+| `npm run db:reset:local`    | SQLite 데이터베이스 초기화 |
 
 ### Vercel 환경 명령어 (PostgreSQL)
 
-| 명령어 | 설명 |
-|--------|------|
-| `npm run dev:vercel` | Vercel 환경 개발 서버 실행 |
-| `npm run db:generate:vercel` | PostgreSQL 마이그레이션 생성 |
-| `npm run db:migrate:vercel` | PostgreSQL 마이그레이션 실행 |
-| `npm run db:studio:vercel` | PostgreSQL Drizzle Studio 실행 |
+| 명령어                       | 설명                           |
+| ---------------------------- | ------------------------------ |
+| `npm run dev:vercel`         | Vercel 환경 개발 서버 실행     |
+| `npm run db:generate:vercel` | PostgreSQL 마이그레이션 생성   |
+| `npm run db:migrate:vercel`  | PostgreSQL 마이그레이션 실행   |
+| `npm run db:studio:vercel`   | PostgreSQL Drizzle Studio 실행 |
 
 ## API 엔드포인트
 
 ### 사진 관리
+
 - `GET /api/photos` - 사진 목록 조회 (페이지네이션 지원)
 - `GET /api/photos/:id` - 특정 사진 상세 조회
 - `POST /api/upload` - 사진 업로드
@@ -321,6 +339,7 @@ npm run db:reset:local
 - `GET /api/photos/:id/download` - 보정 적용된 이미지 다운로드
 
 ### 프로젝트 관리
+
 - `GET /api/projects` - 프로젝트 목록 조회
 - `POST /api/projects` - 새 프로젝트 생성
 - `PATCH /api/projects/:id` - 프로젝트 정보 수정
@@ -329,12 +348,14 @@ npm run db:reset:local
 ## 관련 문서
 
 ### 배포 가이드
+
 - [docs/ELECTRON_DEPLOYMENT.md](./docs/ELECTRON_DEPLOYMENT.md) - Electron 데스크톱 앱 배포
 - [docs/VERCEL_DEPLOYMENT.md](./docs/VERCEL_DEPLOYMENT.md) - Vercel 클라우드 배포
 - [docs/QUICK_DEPLOY.md](./docs/QUICK_DEPLOY.md) - Vercel 빠른 배포
 - [docs/ENVIRONMENT_SETUP.md](./docs/ENVIRONMENT_SETUP.md) - 환경별 설정 가이드
 
 ### 개발 가이드
+
 - [docs/AUTH_GUIDE.md](./docs/AUTH_GUIDE.md) - JWT 인증 설정
 - [docs/CUSTOMIZE.md](./docs/CUSTOMIZE.md) - UI/스타일 커스터마이징
 - [docs/RESET_DATABASE.md](./docs/RESET_DATABASE.md) - 데이터베이스 초기화
