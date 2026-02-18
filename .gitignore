@@ -25,6 +25,7 @@ yarn-error.log*
 # local env files
 .env*.local
 .env
+.env.production.local
 
 # vercel
 .vercel
@@ -45,3 +46,12 @@ drizzle/
 # Uploaded files
 /public/uploads/
 /public/thumbnails/
+
+# Electron
+/dist-electron/
+/release/
+*.exe
+*.dmg
+*.AppImage
+*.deb
+*.rpm

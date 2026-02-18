@@ -1,0 +1,34 @@
+# Vercel에서 무시할 파일들
+
+# Local database
+/data/
+*.db
+*.db-shm
+*.db-wal
+
+# Uploaded files (Vercel Blob 사용)
+/public/uploads/
+/public/thumbnails/
+
+# Development files
+*.md
+!README.md
+!VERCEL_DEPLOYMENT.md
+
+# Test files
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+
+# Documentation
+/docs/
+AUTH_GUIDE.md
+CUSTOMIZE.md
+RESET_DATABASE.md
+SUPABASE_MIGRATION.md
+made-spec.md
+CHANGELOG.md
+IMPLEMENTATION_SUMMARY.md
+PHOTO_MANAGEMENT.md
+RESET_FEATURE.md

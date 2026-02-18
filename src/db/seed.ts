@@ -4,7 +4,7 @@
  * DB에 문제가 있거나 데이터가 없을 때만 실행
  */
 
-import { db, projects, photos, sqlite } from './index';
+import { db, projects, photos } from './index';
 import { sql } from 'drizzle-orm';
 
 /**
@@ -218,11 +218,11 @@ async function seed() {
       console.error('[Seed] Error details:', error.message);
     }
     process.exit(1);
-  } finally {
-    sqlite.close();
-    console.log('[Seed] DB connection closed.');
   }
 }
 
 // 실행
-seed();
+seed().then(() => {
+  console.log('[Seed] DB connection closed.');
+  process.exit(0);
+});

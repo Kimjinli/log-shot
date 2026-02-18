@@ -295,10 +295,41 @@
     font-weight: var(--font-weight-medium);
     transition: all $transition-base;
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: rgba(255, 255, 255, 0.3);
     }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   }
+}
+
+.editButton {
+  &:hover:not(:disabled) {
+    background-color: rgba(59, 130, 246, 0.3) !important;
+  }
+}
+
+.downloadButton {
+  &:hover:not(:disabled) {
+    background-color: rgba(16, 185, 129, 0.3) !important;
+  }
+}
+
+.deleteButton {
+  &:hover:not(:disabled) {
+    background-color: rgba(239, 68, 68, 0.3) !important;
+  }
+}
+
+.progressContainer {
+  padding: $spacing-md $spacing-lg;
+  background-color: rgba(59, 130, 246, 0.1);
+  border-radius: $radius-md;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  margin-bottom: $spacing-md;
 }
 
 // States

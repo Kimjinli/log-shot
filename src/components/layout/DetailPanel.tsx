@@ -1,16 +1,20 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { usePhoto, useUpdatePhoto, useDeletePhoto } from '@/src/hooks/usePhotos';
-import { useProjects } from '@/src/hooks/useProjects';
-import { photoEditSchema, type PhotoEditFormData } from '@/src/lib/validation';
-import { Button, Input, Loading } from '@/src/components/common';
-import { WhiteBalanceControl } from '@/src/features/photo-detail/WhiteBalanceControl';
-import { useToast } from '@/src/hooks/useToast';
-import { SUCCESS_MESSAGES } from '@/src/constants';
-import styles from './DetailPanel.module.scss';
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  usePhoto,
+  useUpdatePhoto,
+  useDeletePhoto,
+} from "@/src/hooks/usePhotos";
+import { useProjects } from "@/src/hooks/useProjects";
+import { photoEditSchema, type PhotoEditFormData } from "@/src/lib/validation";
+import { Button, Input, Loading } from "@/src/components/common";
+import { WhiteBalanceControl } from "@/src/features/photo-detail/WhiteBalanceControl";
+import { useToast } from "@/src/hooks/useToast";
+import { SUCCESS_MESSAGES } from "@/src/constants";
+import styles from "./DetailPanel.module.scss";
 
 interface DetailPanelProps {
   photoId?: string | null;
@@ -20,40 +24,42 @@ interface DetailPanelProps {
 // Helper: Date to datetime-local input format
 const formatDateForInput = (date: Date | string | null | undefined): string => {
   if (!date) return new Date().toISOString().slice(0, 16);
-  const d = typeof date === 'string' ? new Date(date) : date;
+  const d = typeof date === "string" ? new Date(date) : date;
   return d.toISOString().slice(0, 16);
 };
 
 // Helper: Format date for watermark (yyyy-mm-dd hh:mm:ss)
-const formatDateForWatermark = (date: Date | string | null | undefined): string => {
-  if (!date) return '';
-  const d = typeof date === 'string' ? new Date(date) : date;
+const formatDateForWatermark = (
+  date: Date | string | null | undefined,
+): string => {
+  if (!date) return "";
+  const d = typeof date === "string" ? new Date(date) : date;
 
   const year = d.getFullYear();
-  const month = String(d.getMonth() + 1).padStart(2, '0');
-  const day = String(d.getDate()).padStart(2, '0');
-  const hours = String(d.getHours()).padStart(2, '0');
-  const minutes = String(d.getMinutes()).padStart(2, '0');
-  const seconds = String(d.getSeconds()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  const hours = String(d.getHours()).padStart(2, "0");
+  const minutes = String(d.getMinutes()).padStart(2, "0");
+  const seconds = String(d.getSeconds()).padStart(2, "0");
 
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 };
 
 // Helper: tags array to comma-separated string
 const tagsToString = (tags: string[] | null | undefined | any): string => {
-  if (!tags) return '';
-  if (typeof tags === 'string') return tags;
-  if (Array.isArray(tags)) return tags.join(', ');
-  return '';
+  if (!tags) return "";
+  if (typeof tags === "string") return tags;
+  if (Array.isArray(tags)) return tags.join(", ");
+  return "";
 };
 
 // Helper: comma-separated string to tags array
 const stringToTags = (str: string): string[] => {
   // Remove special characters like [], {}, etc.
-  const cleaned = str.replace(/[\[\]{}()]/g, '');
+  const cleaned = str.replace(/[\[\]{}()]/g, "");
 
   return cleaned
-    .split(',')
+    .split(",")
     .map((tag) => tag.trim())
     .filter((tag) => tag.length > 0);
 };
@@ -61,22 +67,25 @@ const stringToTags = (str: string): string[] => {
 // Helper: Validate tags input
 const validateTagsInput = (str: string): string | null => {
   // Check for consecutive commas
-  if (str.includes(',,')) {
-    return '쉼표를 연속으로 사용할 수 없습니다';
+  if (str.includes(",,")) {
+    return "쉼표를 연속으로 사용할 수 없습니다";
   }
   return null;
 };
 
-export const DetailPanel: React.FC<DetailPanelProps> = ({ photoId, onClose }) => {
-  const { data: photo, isLoading } = usePhoto(photoId || '');
+export const DetailPanel: React.FC<DetailPanelProps> = ({
+  photoId,
+  onClose,
+}) => {
+  const { data: photo, isLoading } = usePhoto(photoId || "");
   const { data: projects } = useProjects();
   const updatePhoto = useUpdatePhoto();
   const deletePhoto = useDeletePhoto();
   const toast = useToast();
   const [whiteBalance, setWhiteBalance] = useState({ temperature: 0, tint: 0 });
-  const [tagsInput, setTagsInput] = useState('');
-  const [displayDateInput, setDisplayDateInput] = useState('');
-  const [selectedProjectId, setSelectedProjectId] = useState<string>('ALL');
+  const [tagsInput, setTagsInput] = useState("");
+  const [displayDateInput, setDisplayDateInput] = useState("");
+  const [selectedProjectId, setSelectedProjectId] = useState<string>("ALL");
 
   const {
     register,
@@ -109,7 +118,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ photoId, onClose }) =>
       setTagsInput(tagsToString(photo.data.tags));
 
       // Set project (default to 'ALL' if no project)
-      setSelectedProjectId(photo.data.projectId || 'ALL');
+      setSelectedProjectId(photo.data.projectId || "ALL");
 
       // Load adjustments if exists
       if (photo.data.adjustments?.whiteBalance) {
@@ -124,7 +133,7 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ photoId, onClose }) =>
 
     // Update form value
     if (value) {
-      setValue('displayDate', new Date(value));
+      setValue("displayDate", new Date(value));
     }
   };
 
@@ -140,13 +149,16 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ photoId, onClose }) =>
 
     // Update form value
     const tags = stringToTags(value);
-    setValue('tags', tags);
+    setValue("tags", tags);
   };
 
+  /**
+   * 사진 정보 저장 핸들러
+   */
   const onSubmit = async (data: PhotoEditFormData) => {
     try {
       if (!photoId) {
-        toast.error('사진 ID가 없습니다.');
+        toast.error("사진 ID가 없습니다.");
         return;
       }
 
@@ -167,38 +179,57 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ photoId, onClose }) =>
       };
 
       // Add projectId (null if 'ALL' selected)
-      if (selectedProjectId === 'ALL') {
+      if (selectedProjectId === "ALL") {
         updateData.projectId = null;
       } else {
         updateData.projectId = selectedProjectId;
       }
 
-      console.log('Saving photo with data:', JSON.stringify(updateData, null, 2));
+      console.log("[DetailPanel] Saving photo:", photoId);
+      console.log("[DetailPanel] Update data:", JSON.stringify(updateData, null, 2));
 
       const result = await updatePhoto.mutateAsync({
         id: photoId,
         data: updateData,
       });
 
-      console.log('Save result:', result);
+      console.log("[DetailPanel] Save result:", result);
       toast.success(SUCCESS_MESSAGES.PHOTO_UPDATED);
     } catch (error: any) {
-      console.error('Save error:', error);
-      console.error('Error response:', error?.response);
-      const errorMessage = error?.response?.data?.details || error?.message || '저장에 실패했습니다.';
+      console.error("[DetailPanel] Save error:", error);
+      const errorMessage =
+        error?.message ||
+        "저장에 실패했습니다.";
       toast.error(errorMessage);
     }
   };
 
+  /**
+   * 미리보기 새 창으로 열기
+   */
+  const handlePreview = () => {
+    if (!photoId) return;
+
+    const previewUrl = `/api/photos/preview?id=${photoId}`;
+    window.open(previewUrl, '_blank', 'width=800,height=600');
+  };
+
+  /**
+   * 사진 삭제 핸들러
+   */
   const handleDelete = async () => {
-    if (!confirm('정말 삭제하시겠습니까?')) return;
+    if (!confirm("정말 삭제하시겠습니까?")) return;
 
     try {
+      if (!photoId) {
+        toast.error("사진 ID가 없습니다.");
+        return;
+      }
       await deletePhoto.mutateAsync(photoId);
       toast.success(SUCCESS_MESSAGES.PHOTO_DELETED);
-      onClose();
+      if (onClose) onClose();
     } catch (error) {
-      toast.error('삭제에 실패했습니다.');
+      toast.error("삭제에 실패했습니다.");
     }
   };
 
@@ -222,7 +253,11 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ photoId, onClose }) =>
         <div className={styles.header}>
           <h2 className={styles.title}>Photo Details</h2>
           {onClose && (
-            <button className={styles.closeButton} onClick={onClose} aria-label="닫기">
+            <button
+              className={styles.closeButton}
+              onClick={onClose}
+              aria-label="닫기"
+            >
               ×
             </button>
           )}
@@ -237,7 +272,11 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ photoId, onClose }) =>
       <div className={styles.header}>
         <h2 className={styles.title}>Photo Details</h2>
         {onClose && (
-          <button className={styles.closeButton} onClick={onClose} aria-label="닫기">
+          <button
+            className={styles.closeButton}
+            onClick={onClose}
+            aria-label="닫기"
+          >
             ×
           </button>
         )}
@@ -248,8 +287,16 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ photoId, onClose }) =>
         <div className={styles.imagePreview}>
           <img src={photo?.data?.compressedUrl} alt="" />
           <div className={styles.timestamp}>
-            {displayDateInput ? formatDateForWatermark(displayDateInput) : ''}
+            {displayDateInput ? formatDateForWatermark(displayDateInput) : ""}
           </div>
+          <button
+            className={styles.previewButton}
+            onClick={handlePreview}
+            type="button"
+            title="워터마크 적용 미리보기"
+          >
+            🔍 미리보기
+          </button>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -290,15 +337,19 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ photoId, onClose }) =>
             fullWidth
           />
           {tagsInput && (
-            <div style={{ fontSize: '12px', color: '#888', marginTop: '-8px' }}>
-              미리보기: {stringToTags(tagsInput).map((tag, i) => (
-                <span key={i} style={{
-                  display: 'inline-block',
-                  background: '#333',
-                  padding: '2px 8px',
-                  borderRadius: '12px',
-                  marginRight: '4px'
-                }}>
+            <div style={{ fontSize: "12px", color: "#888", marginTop: "-8px" }}>
+              미리보기:{" "}
+              {stringToTags(tagsInput).map((tag, i) => (
+                <span
+                  key={i}
+                  style={{
+                    display: "inline-block",
+                    background: "#333",
+                    padding: "2px 8px",
+                    borderRadius: "12px",
+                    marginRight: "4px",
+                  }}
+                >
                   {tag}
                 </span>
               ))}
@@ -307,14 +358,19 @@ export const DetailPanel: React.FC<DetailPanelProps> = ({ photoId, onClose }) =>
 
           {/* White Balance */}
           <WhiteBalanceControl
-            imageUrl={photo?.data?.compressedUrl || ''}
+            imageUrl={photo?.data?.compressedUrl || ""}
             value={whiteBalance}
             onChange={setWhiteBalance}
           />
 
           {/* Actions */}
           <div className={styles.actions}>
-            <Button type="submit" variant="primary" fullWidth loading={updatePhoto.isPending}>
+            <Button
+              type="submit"
+              variant="primary"
+              fullWidth
+              loading={updatePhoto.isPending}
+            >
               Save Changes
             </Button>
             <Button

@@ -22,3 +22,9 @@ export type { LoadingProps } from './Loading/Loading';
 
 export { ConfirmDialog } from './ConfirmDialog';
 export type { ConfirmDialogProps } from './ConfirmDialog';
+
+export { ProgressBar } from './ProgressBar';
+export type { ProgressBarProps } from './ProgressBar';
+
+export { BatchEditModal } from './BatchEditModal';
+export type { BatchEditModalProps, BatchEditData } from './BatchEditModal';

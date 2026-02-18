@@ -12,6 +12,7 @@ $color-border: var(--color-border);
 $color-error: var(--color-error);
 $color-success: var(--color-success);
 $color-warning: var(--color-warning);
+$color-danger: var(--color-error); // Alias for danger (same as error)
 
 // Spacing
 $spacing-xs: var(--spacing-xs);

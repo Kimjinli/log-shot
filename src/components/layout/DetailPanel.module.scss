@@ -70,6 +70,37 @@
     height: 100%;
     object-fit: cover;
   }
+
+  &:hover .previewButton {
+    opacity: 1;
+  }
+}
+
+.previewButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: $spacing-sm $spacing-lg;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  opacity: 0;
+  transition: all $transition-base;
+
+  &:hover {
+    background-color: rgba(59, 130, 246, 0.9);
+    border-color: rgba(59, 130, 246, 1);
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+
+  &:active {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
 }
 
 .timestamp {

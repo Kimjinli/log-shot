@@ -43,27 +43,52 @@ export const MainLayout: React.FC = () => {
         <main className={styles.mobileMain}>
           {activeTab === 'capture' && (
             <div className={styles.capturePage}>
+              <h2 className={styles.pageTitle}>📷 사진 촬영</h2>
               <FileUploader isMobile />
             </div>
           )}
           {activeTab === 'group' && (
-            <PhotoGrid
-              onPhotoSelect={setSelectedPhotoId}
-              selectedPhotoId={selectedPhotoId}
-              projectId={selectedProjectId}
-              dateRange={dateRange}
-            />
+            <div className={styles.groupPage}>
+              <div className={styles.mobileHeader}>
+                <h2 className={styles.pageTitle}>🖼️ 사진 그룹</h2>
+                {selectedProjectId && (
+                  <button
+                    className={styles.clearFilterButton}
+                    onClick={() => setSelectedProjectId(null)}
+                  >
+                    필터 해제
+                  </button>
+                )}
+              </div>
+              <PhotoGrid
+                onPhotoSelect={setSelectedPhotoId}
+                selectedPhotoId={selectedPhotoId}
+                projectId={selectedProjectId}
+                selectedTag={selectedTag}
+                dateRange={dateRange}
+                onDateRangeChange={setDateRange}
+              />
+            </div>
           )}
           {activeTab === 'save' && (
             <div className={styles.savedPage}>
-              <h2>저장된 파일</h2>
-              <p>다운로드한 사진 목록이 여기 표시됩니다.</p>
+              <h2 className={styles.pageTitle}>💾 저장된 파일</h2>
+              <p className={styles.pageDescription}>다운로드한 사진 목록이 여기 표시됩니다.</p>
             </div>
           )}
           {activeTab === 'profile' && (
             <div className={styles.profilePage}>
-              <h2>프로필</h2>
-              <p>설정 및 프로필 정보</p>
+              <h2 className={styles.pageTitle}>👤 프로필</h2>
+              <div className={styles.profileContent}>
+                <div className={styles.settingItem}>
+                  <span className={styles.settingLabel}>버전</span>
+                  <span className={styles.settingValue}>0.1.0</span>
+                </div>
+                <div className={styles.settingItem}>
+                  <span className={styles.settingLabel}>모드</span>
+                  <span className={styles.settingValue}>모바일</span>
+                </div>
+              </div>
             </div>
           )}
         </main>

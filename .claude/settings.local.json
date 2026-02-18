@@ -20,7 +20,23 @@
       "Bash(/c/mywork/log-shot/src/components/layout/FileUploader.module.scss:*)",
       "Bash(npx drizzle-kit push:*)",
       "Bash(ls:*)",
-      "Bash(C:/mywork/log-shot/RESET_FEATURE.md:*)"
+      "Bash(C:/mywork/log-shot/RESET_FEATURE.md:*)",
+      "Bash(C:/mywork/log-shot/CHANGELOG.md:*)",
+      "Bash(npm run lint:*)",
+      "Bash(C:/mywork/log-shot/IMPLEMENTATION_SUMMARY.md:*)",
+      "Bash(C:/mywork/log-shot/QUICK_DEPLOY.md:*)",
+      "Bash(pnpm rebuild:*)",
+      "Bash(pnpm config set:*)",
+      "Bash(pnpm approve-builds:*)",
+      "Bash(npm run build-release:*)",
+      "Bash(npm run:*)",
+      "Bash(CSC_IDENTITY_AUTO_DISCOVERY=false npm run electron:postbuild:*)",
+      "Bash(electron-builder:*)",
+      "Bash(npx electron-builder:*)",
+      "Bash(timeout:*)",
+      "Bash(test:*)",
+      "Bash(powershell -Command \"Get-Process | Where-Object {$_ProcessName -like ''*electron*'' -or $_ProcessName -like ''*Log-Shot*''} | Stop-Process -Force\")",
+      "Bash(powershell -Command \"Remove-Item -Path ''C:\\\\mywork\\\\log-shot\\\\dist-electron'' -Recurse -Force -ErrorAction SilentlyContinue; Start-Sleep -Seconds 2; Test-Path ''C:\\\\mywork\\\\log-shot\\\\dist-electron''\")"
     ]
   }
 }

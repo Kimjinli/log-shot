@@ -72,6 +72,12 @@ export async function PATCH(
       console.log('[API] Adjustments:', JSON.stringify(updateData.adjustments));
     }
 
+    // Include projectId if provided (can be null)
+    if ('projectId' in data) {
+      updateData.projectId = data.projectId;
+      console.log('[API] ProjectId:', updateData.projectId);
+    }
+
     console.log('[API] Final update data:', JSON.stringify(updateData, null, 2));
 
     const updated = await db

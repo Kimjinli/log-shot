@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db, photos } from '@/src/db';
 import { desc, eq, and, isNull } from 'drizzle-orm';
 
+// 동적 라우트로 설정 (standalone 빌드 지원)
+export const dynamic = 'force-dynamic';
+
 /**
  * GET /api/photos - 사진 목록 조회
  * DB에서 사진 목록을 가져옵니다. 프로젝트 필터링 지원.

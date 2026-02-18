@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { QUERY_CONFIG } from '@/src/constants';
 
 /**
  * 모든 데이터 초기화 Hook
@@ -23,8 +24,11 @@ export function useReset() {
       return response.json();
     },
     onSuccess: () => {
-      // 모든 쿼리 캐시 무효화
-      queryClient.clear();
+      // 모든 쿼리 캐시 무효화 및 리페치
+      queryClient.invalidateQueries({ queryKey: [QUERY_CONFIG.KEYS.PHOTOS] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_CONFIG.KEYS.PROJECTS] });
+      queryClient.refetchQueries({ queryKey: [QUERY_CONFIG.KEYS.PHOTOS] });
+      queryClient.refetchQueries({ queryKey: [QUERY_CONFIG.KEYS.PROJECTS] });
     },
   });
 }

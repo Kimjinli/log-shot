@@ -88,3 +88,25 @@ export function useDeletePhoto() {
     },
   });
 }
+
+/**
+ * 여러 사진 일괄 삭제
+ */
+export function useBatchDeletePhotos() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (photoIds: string[]) => {
+      const response = await fetch('/api/photos/batch-delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ photoIds }),
+      });
+      if (!response.ok) throw new Error('Failed to delete photos');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_CONFIG.KEYS.PHOTOS] });
+    },
+  });
+}

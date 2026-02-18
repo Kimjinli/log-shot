@@ -1,0 +1,177 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.batchEditModal {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+  padding: $spacing-md 0;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-size: $font-size-base;
+  font-weight: var(--font-weight-semibold);
+  color: $color-text-primary;
+  margin: 0;
+}
+
+.select {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  color: $color-text-primary;
+  font-size: $font-size-sm;
+  outline: none;
+  transition: all $transition-base;
+
+  &:focus {
+    border-color: $color-primary;
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  cursor: pointer;
+  padding: $spacing-sm;
+  border-radius: $radius-sm;
+  transition: background-color $transition-base;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  input[type='radio'] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  span {
+    font-size: $font-size-sm;
+    color: $color-text-primary;
+  }
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  cursor: pointer;
+
+  input[type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  span {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+  }
+}
+
+.watermarkSettings {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.label {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  font-weight: var(--font-weight-medium);
+}
+
+.range {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: $radius-full;
+  outline: none;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: $color-primary;
+    cursor: pointer;
+    transition: all $transition-base;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: $color-primary;
+    cursor: pointer;
+    border: none;
+    transition: all $transition-base;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &::-webkit-slider-thumb {
+      cursor: not-allowed;
+    }
+
+    &::-moz-range-thumb {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  gap: $spacing-md;
+  margin-top: $spacing-md;
+}

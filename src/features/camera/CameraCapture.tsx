@@ -83,6 +83,7 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
       await processPhoto(file);
       stopCamera();
     }, 'image/jpeg', 0.95);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stopCamera]);
 
   /**
@@ -95,6 +96,7 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
 
       await processPhoto(file);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 

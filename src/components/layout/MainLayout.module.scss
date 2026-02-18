@@ -38,9 +38,76 @@
 }
 
 .capturePage,
+.groupPage,
 .savedPage,
 .profilePage {
-  @include flex-center;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: $spacing-lg;
+}
+
+.mobileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-md;
+}
+
+.pageTitle {
+  font-size: $font-size-xl;
+  font-weight: var(--font-weight-bold);
+  color: $color-text-primary;
+  margin: 0 0 $spacing-md 0;
+}
+
+.pageDescription {
+  font-size: $font-size-sm;
   color: $color-text-secondary;
+  text-align: center;
+  margin-top: $spacing-xl;
+}
+
+.clearFilterButton {
+  padding: $spacing-xs $spacing-sm;
+  background-color: rgba(59, 130, 246, 0.1);
+  border: 1px solid $color-primary;
+  border-radius: $radius-sm;
+  color: $color-primary;
+  font-size: $font-size-xs;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+  }
+}
+
+.profileContent {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  margin-top: $spacing-xl;
+}
+
+.settingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md;
+  background-color: $color-surface;
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+}
+
+.settingLabel {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  font-weight: var(--font-weight-medium);
+}
+
+.settingValue {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  font-weight: var(--font-weight-semibold);
 }

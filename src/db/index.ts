@@ -1,64 +1,63 @@
 /**
- * Drizzle ORM Database Instance (SQLite)
+ * Drizzle ORM Database Instance
+ * 환경에 따라 자동으로 SQLite 또는 PostgreSQL 선택
  */
 
-import { drizzle } from 'drizzle-orm/better-sqlite3';
-import Database from 'better-sqlite3';
 import * as schema from './schema';
-import path from 'path';
 
-// SQLite 데이터베이스 파일 경로
-const dbPath = process.env.DATABASE_PATH || path.join(process.cwd(), 'data', 'sqlite.db');
+// 환경 감지
+const isProduction = process.env.NODE_ENV === 'production';
+const hasPostgresUrl = process.env.DATABASE_URL?.startsWith('postgres');
+const usePostgres = isProduction && hasPostgresUrl;
 
-// SQLite 연결 (Singleton)
-let _sqlite: Database.Database | null = null;
-let _db: ReturnType<typeof drizzle> | null = null;
+let db: any;
 
-// Singleton 패턴으로 DB 연결 관리
-function getDatabase() {
-  if (!_db) {
-    // 디렉토리 생성 (data 폴더)
-    const fs = require('fs');
-    const dbDir = path.dirname(dbPath);
-    if (!fs.existsSync(dbDir)) {
-      fs.mkdirSync(dbDir, { recursive: true });
-    }
+if (usePostgres) {
+  // PostgreSQL (Vercel 배포)
+  const { drizzle } = require('drizzle-orm/postgres-js');
+  const postgres = require('postgres');
 
-    _sqlite = new Database(dbPath);
+  const connectionString = process.env.DATABASE_URL!;
+  const sql = postgres(connectionString);
+  db = drizzle(sql, { schema });
 
-    // WAL 모드 활성화 (성능 향상)
-    _sqlite.pragma('journal_mode = WAL');
+  console.log('[DB] PostgreSQL connected (Production)');
+} else {
+  // SQLite (로컬 개발)
+  const { drizzle } = require('drizzle-orm/better-sqlite3');
+  const Database = require('better-sqlite3');
+  const path = require('path');
+  const fs = require('fs');
 
-    // Foreign Key 활성화
-    _sqlite.pragma('foreign_keys = ON');
+  const dbPath = process.env.DATABASE_PATH || path.join(process.cwd(), 'data', 'sqlite.db');
 
-    _db = drizzle(_sqlite, { schema });
-
-    console.log('[DB] SQLite connected:', dbPath);
+  // 디렉토리 생성
+  const dbDir = path.dirname(dbPath);
+  if (!fs.existsSync(dbDir)) {
+    fs.mkdirSync(dbDir, { recursive: true });
   }
 
-  return _db;
-}
+  const sqlite = new Database(dbPath);
 
-function getSqlite() {
-  if (!_sqlite) {
-    getDatabase(); // DB 초기화
-  }
-  return _sqlite!;
-}
+  // WAL 모드 활성화 (성능 향상)
+  sqlite.pragma('journal_mode = WAL');
 
-// Export
-export const db = getDatabase();
-export const sqlite = getSqlite();
-export * from './schema';
+  // Foreign Key 활성화
+  sqlite.pragma('foreign_keys = ON');
 
-// Graceful shutdown
-if (typeof process !== 'undefined') {
-  process.on('SIGINT', () => {
-    if (_sqlite) {
-      _sqlite.close();
+  db = drizzle(sqlite, { schema });
+
+  console.log('[DB] SQLite connected (Development):', dbPath);
+
+  // Graceful shutdown for SQLite
+  if (typeof process !== 'undefined') {
+    process.on('SIGINT', () => {
+      sqlite.close();
       console.log('[DB] SQLite connection closed');
-    }
-    process.exit(0);
-  });
+      process.exit(0);
+    });
+  }
 }
+
+export { db };
+export * from './schema';

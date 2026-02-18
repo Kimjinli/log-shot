@@ -1,0 +1,54 @@
+{
+  "appId": "com.logshot.app",
+  "productName": "Log-Shot",
+  "npmRebuild": false,
+  "forceCodeSigning": false,
+  "directories": {
+    "output": "dist-electron-build"
+  },
+  "files": [
+    "main.js",
+    ".next/standalone/**/*",
+    ".next/static/**/*",
+    "public/**/*",
+    "package.json",
+    "data/**/*"
+  ],
+  "asarUnpack": [
+    ".next/**/*"
+  ],
+  "extraResources": [
+    {
+      "from": "data",
+      "to": "data",
+      "filter": ["**/*"]
+    }
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "dir",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "public/icon.ico",
+    "sign": false
+  },
+  "mac": {
+    "target": ["dmg", "zip"],
+    "icon": "public/icon.icns",
+    "category": "public.app-category.photography"
+  },
+  "linux": {
+    "target": ["AppImage", "deb"],
+    "icon": "public/icon.png",
+    "category": "Graphics"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Log-Shot"
+  }
+}
